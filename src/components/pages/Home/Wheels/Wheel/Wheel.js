@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Col, Button } from 'react-bootstrap';
 
 const Wheel = ({wheel}) => {
-    const {name, image, description, minOrder, availableQuantity, price}= wheel;
+    const {name, image, description, minOrder, availableQuantity, price} = wheel;
     return (
         <Col>
             <Card>
