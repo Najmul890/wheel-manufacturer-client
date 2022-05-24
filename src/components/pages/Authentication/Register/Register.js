@@ -4,6 +4,7 @@ import { auth } from '../../../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { Form } from 'react-bootstrap';
 import { Button } from 'bootstrap';
+import { toast } from 'react-toastify';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Register = () => {
         const email = event.target.email.value;
         const password = event.target.password.value;
 
-        toast('email sent to verify your email address');
+        toast.success('email sent to verify your email address');
         await createUserWithEmailAndPassword(email, password);
 
         await updateProfile({ displayName: name });
