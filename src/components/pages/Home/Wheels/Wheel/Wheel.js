@@ -12,8 +12,11 @@ const Wheel = ({wheel}) => {
                     <Card.Text>
                         {description}
                     </Card.Text>
-                    <h4 className="fw-bold">${price}</h4>
-                    <Button className='btn btn-success' >Order Now</Button>
+                    <p>Min-Order: <span className="fw-bold">{minOrder}</span></p>
+                    <p>Available Quantity: <span className="fw-bold">{availableQuantity}</span></p>
+                    <h4>price: <span className="fw-bold">${price} /piece</span></h4>
+
+                    <Button className='btn btn-success mt-3' >Order Now</Button>
                 </Card.Body>
             </Card>
         </Col>
