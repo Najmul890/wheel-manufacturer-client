@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Form } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { auth } from '../../../firebase.init';
 
@@ -14,6 +14,7 @@ const Purchase = () => {
     const [orderQuantity, setOrderQuantity]=useState("");
     const [error, setError]=useState('');
     const [btnDisable, setBtnDisable]=useState(true);
+    const navigate= useNavigate();
 
     useEffect( () =>{
         const url = `http://localhost:5000/wheel/${id}`;
@@ -49,12 +50,12 @@ const Purchase = () => {
             email:user?.email,
             phone:event.target.phone.value,
             address:event.target.address.value,
-            product:name,
             orderedQuantity:orderQuantity,
-            totalPrice:totalAmount
+            totalPrice:totalAmount,
+            orderedWheel:wheel
         }
 
-        fetch('http://localhost:5000/user', {
+        fetch('http://localhost:5000/placeOrder', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -63,6 +64,8 @@ const Purchase = () => {
         })
         .then(res => res.json())
         .then(data =>{
+            navigate("/");
+            setOrderQuantity("");
             toast.success('Your order has placed successfully!!!');
             event.target.reset();
         })
