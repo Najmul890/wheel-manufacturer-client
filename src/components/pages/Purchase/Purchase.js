@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Form } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { auth } from '../../../firebase.init';
 
 const Purchase = () => {
@@ -39,9 +40,32 @@ const Purchase = () => {
         
     }
     const totalAmount=(parseInt(orderQuantity))*price;
+
     const handlePlaceOrder=(event)=>{
         event.preventDefault();
-        console.log(event.target.orderQuantity.value);
+        
+        const order={
+            userName:user?.displayName,
+            email:user?.email,
+            phone:event.target.phone.value,
+            address:event.target.address.value,
+            product:name,
+            orderedQuantity:orderQuantity,
+            totalPrice:totalAmount
+        }
+
+        fetch('http://localhost:5000/user', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            toast.success('Your order has placed successfully!!!');
+            event.target.reset();
+        })
     }
     return (
         <div className="container row">
