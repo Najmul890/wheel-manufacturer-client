@@ -28,13 +28,13 @@ const GoogleSignIn = () => {
     return (
         <div>
             <div className='d-flex align-items-center'>
-                <div style={{ height: '1px' }} className='element-bg w-50'></div>
+                <div style={{ height: '1px' }} className='w-50 bg-success'></div>
                 <p className='mt-2 px-2'>or</p>
-                <div style={{ height: '1px' }} className='element-bg w-50'></div>
+                <div style={{ height: '1px' }} className=' w-50 bg-success'></div>
             </div>
             {errorElement}
 
-            <div>
+            <div >
                 <button onClick={() => signInWithGoogle()} className="btn btn-success text-white">Sign in with google</button>
 
             </div>

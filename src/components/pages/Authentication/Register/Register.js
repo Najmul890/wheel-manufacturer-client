@@ -2,9 +2,9 @@ import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { auth } from '../../../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
-import { Form } from 'react-bootstrap';
-import { Button } from 'bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
+import GoogleSignIn from '../GoogleSignIn/GoogleSignIn';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -53,7 +53,7 @@ const Register = () => {
                     </Button>
                 </Form>
                 <p className='text-primary' >Already have an account? <Link className='text-success' to="/login" >Login</Link> </p>
-                
+               <GoogleSignIn></GoogleSignIn> 
         </div>
     );
 };

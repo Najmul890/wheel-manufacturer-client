@@ -1,8 +1,9 @@
 import React from 'react';
 import { Card, Col, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-const Wheel = ({wheel}) => {
-    const {name, image, description, minOrder, availableQuantity, price} = wheel;
+const Wheel = ({ wheel }) => {
+    const { name, _id, image, description, minOrder, availableQuantity, price } = wheel;
     return (
         <Col>
             <Card>
@@ -16,7 +17,9 @@ const Wheel = ({wheel}) => {
                     <p>Available Quantity: <span className="fw-bold">{availableQuantity}</span></p>
                     <h4>price: <span className="fw-bold">${price} /piece</span></h4>
 
-                    <Button className='btn btn-success mt-3' >Order Now</Button>
+                    <Link to={`purchase/${_id}`} >
+                        <Button className='btn btn-success mt-3'  >Order Now</Button>
+                    </Link>
                 </Card.Body>
             </Card>
         </Col>

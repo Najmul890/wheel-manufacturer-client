@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Row } from 'react-bootstrap';
+import Loading from '../../../shared/Loading/Loading';
 import Wheel from './Wheel/Wheel';
 
 const Wheels = () => {
@@ -9,6 +10,10 @@ const Wheels = () => {
             .then(res => res.json())
             .then(data => setWheels(data))
     }, [])
+
+    if(wheels.length===0){
+        return <Loading></Loading>
+    }
     return (
         <div>
             <h2 className='text-center my-5' > The Wheels We Manufacture </h2>

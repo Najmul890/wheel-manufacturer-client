@@ -5,6 +5,7 @@ import Loading from '../../../shared/Loading/Loading';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from '../../../../firebase.init';
 import { toast } from 'react-toastify';
+import GoogleSignIn from '../GoogleSignIn/GoogleSignIn';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -83,7 +84,7 @@ const Login = () => {
             {errorElement}
             <p className='color-dark' >Didn't have an account? <Link to="/register" className='main-color fw-bold pe-auto text-decoration-none' onClick={navigateRegister}>Please Register</Link> </p>
             <p>Forget Password? <button className='btn btn-link color-dark pe-auto text-decoration-none' onClick={resetPassword}>Reset Password</button> </p>
-            
+            <GoogleSignIn></GoogleSignIn>   
         </div>
     );
 };
