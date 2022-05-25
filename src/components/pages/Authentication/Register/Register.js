@@ -5,6 +5,7 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-fireb
 import { Form, Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import GoogleSignIn from '../GoogleSignIn/GoogleSignIn';
+import useToken from '../../../hooks/useToken';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -13,10 +14,10 @@ const Register = () => {
     const from = location.state?.from?.pathname || "/";
     const [createUserWithEmailAndPassword, user] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
-    
+    const [token]=useToken(user);
 
 
-    if (user) {
+    if (token) {
         navigate(from, { replace: true });
     }
 

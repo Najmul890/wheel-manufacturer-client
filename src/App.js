@@ -24,6 +24,7 @@ function App() {
             <Purchase></Purchase>
           </RequireAuth>
         }></Route>
+        
         <Route path="/login" element={<Login></Login>} ></Route>
         <Route path="/register" element={<Register></Register>} ></Route>
         <Route path="*" element={<NotFound></NotFound>} ></Route>

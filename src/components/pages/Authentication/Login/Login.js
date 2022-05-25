@@ -6,6 +6,7 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-
 import { auth } from '../../../../firebase.init';
 import { toast } from 'react-toastify';
 import GoogleSignIn from '../GoogleSignIn/GoogleSignIn';
+import useToken from '../../../hooks/useToken';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -21,6 +22,8 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
+    const [token]=useToken(user);
+
     const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
     
 
@@ -28,7 +31,7 @@ const Login = () => {
         return <Loading></Loading>
     }
 
-    if(user){
+    if(token){
         navigate(from, { replace: true });
     }
 
