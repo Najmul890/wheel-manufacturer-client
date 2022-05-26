@@ -21,6 +21,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './firebase.init';
 import useAdmin from './components/hooks/useAdmin';
 import RequireAdmin from './components/pages/Authentication/RequireAdmin/RequireAdmin';
+import Footer from './components/shared/Footer/Footer';
 
 
 
@@ -29,7 +30,7 @@ function App() {
   const [user] = useAuthState(auth);
   const [admin] = useAdmin(user);
   return (
-    <div className='' >
+    <div className='App' >
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home></Home>} ></Route>
@@ -61,6 +62,7 @@ function App() {
         <Route path="/register" element={<Register></Register>} ></Route>
         <Route path="*" element={<NotFound></NotFound>} ></Route>
       </Routes>
+      <Footer></Footer>
       <ToastContainer></ToastContainer>
     </div>
   );
