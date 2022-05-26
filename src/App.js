@@ -17,11 +17,17 @@ import ManageAllOrders from './components/pages/Dashboard/Admin/ManageAllOrders/
 import AddAProduct from './components/pages/Dashboard/Admin/AddAProduct/AddAProduct';
 import MakeAdmin from './components/pages/Dashboard/Admin/MakeAdmin/MakeAdmin';
 import ManageProducts from './components/pages/Dashboard/Admin/ManageProducts/ManageProducts';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from './firebase.init';
+import useAdmin from './components/hooks/useAdmin';
+import RequireAdmin from './components/pages/Authentication/RequireAdmin/RequireAdmin';
 
 
 
 
 function App() {
+  const [user] = useAuthState(auth);
+  const [admin] = useAdmin(user);
   return (
     <div className='' >
       <Header></Header>
@@ -32,16 +38,25 @@ function App() {
             <Purchase></Purchase>
           </RequireAuth>
         }></Route>
-        <Route path="dashboard" element={<RequireAuth><Dashboard/></RequireAuth>} >
-          <Route index element={<MyOrders></MyOrders>}></Route>
-          <Route path="addAReview" element={<AddAReview></AddAReview>}></Route>
-          <Route path="myProfile" element={<MyProfile></MyProfile>}></Route>
-          <Route path="manageOrders" element={<ManageAllOrders></ManageAllOrders>}></Route>
-          <Route path="addAProduct" element={<AddAProduct></AddAProduct>}></Route>
-          <Route path="makeAdmin" element={<MakeAdmin></MakeAdmin>}></Route>
-          <Route path="manageProducts" element={<ManageProducts></ManageProducts>}></Route>
-          
-        </Route>
+        {
+          !admin &&
+          <Route path="dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} >
+            <Route index element={<MyOrders></MyOrders>}></Route>
+            <Route path="addAReview" element={<AddAReview></AddAReview>}></Route>
+            <Route path="myProfile" element={<MyProfile></MyProfile>}></Route>
+          </Route>
+        }
+        {
+          admin &&
+          <Route path="dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} >
+            <Route index element={<RequireAdmin><ManageAllOrders></ManageAllOrders></RequireAdmin>}></Route>
+            <Route path="addAProduct" element={<RequireAdmin><AddAProduct></AddAProduct></RequireAdmin>}></Route>
+            <Route path="makeAdmin" element={<RequireAdmin><MakeAdmin></MakeAdmin></RequireAdmin>}></Route>
+            <Route path="manageProducts" element={<RequireAdmin><ManageProducts></ManageProducts></RequireAdmin>}></Route>
+            <Route path="myProfile" element={<MyProfile></MyProfile>}></Route>
+
+          </Route>
+        }
         <Route path="/login" element={<Login></Login>} ></Route>
         <Route path="/register" element={<Register></Register>} ></Route>
         <Route path="*" element={<NotFound></NotFound>} ></Route>

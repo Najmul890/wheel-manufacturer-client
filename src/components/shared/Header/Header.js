@@ -27,6 +27,9 @@ const Header = () => {
                             user && <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
                         }
                         {
+                            user && <p className='text-success mt-2 me-2'>{user.displayName}</p>
+                        }
+                        {
                             user ? <button className='btn btn-danger' onClick={handleSignOut} >Sign Out</button>
                                 :
                                 <Nav.Link as={Link} to="/login">Login</Nav.Link>
