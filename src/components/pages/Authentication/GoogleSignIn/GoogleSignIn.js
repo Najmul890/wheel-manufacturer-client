@@ -7,7 +7,7 @@ import useToken from '../../../hooks/useToken';
 
 const GoogleSignIn = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-    const [token]=useToken(user)
+    const [token]=useToken(user);
 
     const navigate = useNavigate();
     const location = useLocation();

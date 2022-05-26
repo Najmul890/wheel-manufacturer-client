@@ -63,7 +63,7 @@ const MyOrders = () => {
                                             <td>{index + 1}</td>
                                             <td> <img width={50} src={order?.orderedWheel?.image} alt="" /> </td>
                                             <td>{order?.orderedWheel?.name}</td>
-                                            <td>{order?.orderedWheel?.price}</td>
+                                            <td>${order?.orderedWheel?.price}</td>
                                             <td>{order?.orderedQuantity}</td>
                                             <td>${order?.totalPrice}</td>
                                             <td><span className="bg-primary text-white p-1">pay</span> <span className="bg-danger text-white ms-1 p-1">cancel</span></td>
