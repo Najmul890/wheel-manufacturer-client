@@ -8,7 +8,8 @@ import { auth } from '../../../firebase.init';
 const Header = () => {
     const [user] = useAuthState(auth);
     const handleSignOut = () => {
-        signOut(auth)
+        signOut(auth);
+        localStorage.removeItem('accessToken');
     }
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -22,6 +23,9 @@ const Header = () => {
 
                     </Nav>
                     <Nav>
+                        {
+                            user && <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
+                        }
                         {
                             user ? <button className='btn btn-danger' onClick={handleSignOut} >Sign Out</button>
                                 :
