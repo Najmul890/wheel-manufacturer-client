@@ -1,11 +1,12 @@
 import React from 'react';
 
 const Project = ({project}) => {
-    const {name, image, description, live}= project;
+    const {name, image, description, technology, live}= project;
     return (
         <div className='row bg-dark p-5 mb-5 text-white' >
             <div className="col-md-6">
                 <h4 className="text-success">{name}</h4>
+                <p className='text-info fw-bold' >Technology Used: {technology}</p>
                 <p>{description}</p>
                 <a className='text-info' href={live} target="_blank" >Live-site: {live}</a>
             </div>
