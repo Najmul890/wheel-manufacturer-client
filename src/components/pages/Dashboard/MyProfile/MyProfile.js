@@ -2,8 +2,8 @@ import React from 'react';
 
 const MyProfile = () => {
     return (
-        <div>
-            <h2>my profile </h2>
+        <div className="p-5">
+            <h2>My Profile</h2>
         </div>
     );
 };

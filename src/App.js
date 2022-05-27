@@ -22,6 +22,8 @@ import { auth } from './firebase.init';
 import useAdmin from './components/hooks/useAdmin';
 import RequireAdmin from './components/pages/Authentication/RequireAdmin/RequireAdmin';
 import Footer from './components/shared/Footer/Footer';
+import Blogs from './components/pages/Blogs/Blogs';
+import MyPortfolio from './components/pages/MyPortfolio/MyPortfolio';
 
 
 
@@ -34,6 +36,8 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home></Home>} ></Route>
+        <Route path="/blogs" element={<Blogs></Blogs>} ></Route>
+        <Route path="/myPortfolio" element={<MyPortfolio></MyPortfolio>} ></Route>
         <Route path="/purchase/:id" element={
           <RequireAuth>
             <Purchase></Purchase>
