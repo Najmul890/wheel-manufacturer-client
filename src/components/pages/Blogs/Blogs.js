@@ -33,9 +33,10 @@ const Blogs = () => {
             <div className="p-5 bg-dark text-white mb-5">
                 <div className="p-5">
                     <h2 className='text-info mb-5'>You have an array of products. Each product has a name, price, description, etc. How will you implement a search to find products by name?</h2>
-                    <p>
-                        First I take the search text from the input field, then I check search text if it includes in product name then return it and set into the state.
-                    </p>
+                    <p>First I take the search text from the input field.</p>
+                    <p>Then I check search text if it includes in product name.</p>
+                    <p>Then return it.</p>
+                    <p>And finally set into the state.</p>
                 </div>
             </div>
             <div className="p-5 bg-dark text-white mb-5">
