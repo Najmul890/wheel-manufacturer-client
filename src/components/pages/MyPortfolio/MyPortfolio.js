@@ -41,7 +41,7 @@ const MyPortfolio = () => {
                     <h4 className="text-success my-5 ">Md. Najmul Hossain Rajib</h4>
                     <p>Email: najmul890089@gmail.com</p>
                     <p>Education: BSC in Textile Engineering (4th year)</p>
-                    <p className="text-info mt-5">
+                    <p className="text-info0 mt-5">
                         Skils: Javascript, React, Firebase, Node, Express, Mongodb, HTML, CSS, Bootstrap
                     </p>
                 </div>
