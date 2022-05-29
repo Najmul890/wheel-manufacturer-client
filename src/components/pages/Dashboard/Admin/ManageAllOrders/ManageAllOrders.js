@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const ManageAllOrders = () => {
     const [orders, setOrders] = useState([]);
     useEffect(() => {
-        fetch('https://afternoon-taiga-42988.herokuapp.com/orders')
+        fetch('http://localhost:5000/orders')
             .then(res => res.json())
             .then(data => setOrders(data))
     }, [])
@@ -41,7 +41,15 @@ const ManageAllOrders = () => {
                                             <td>${order?.orderedWheel?.price}</td>
                                             <td>{order?.orderedQuantity}</td>
                                             <td>${order?.totalPrice}</td>
-                                            <td><span className="bg-primary text-white p-1">pay</span> <span className="bg-danger text-white ms-1 p-1">cancel</span></td>
+                                            <td><span className="bg-primary text-white p-1">
+                                                <select>
+                                                    <option value="volvo">Unpaid</option>
+                                                    <option value="saab">Pending</option>
+                                                    <option value="saab">Shifted</option>
+                                                    
+                                                </select>
+                                            </span>
+                                                <span className="bg-danger text-white ms-1 p-1">Delete</span></td>
 
 
                                         </tr>

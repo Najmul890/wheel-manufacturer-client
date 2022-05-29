@@ -11,7 +11,7 @@ const MyOrders = () => {
 
     useEffect(() => {
         if (user) {
-            fetch(`https://afternoon-taiga-42988.herokuapp.com/myOrders?email=${user.email}`, {
+            fetch(`http://localhost:5000/myOrders?email=${user.email}`, {
                 method: 'GET',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -66,7 +66,14 @@ const MyOrders = () => {
                                             <td>${order?.orderedWheel?.price}</td>
                                             <td>{order?.orderedQuantity}</td>
                                             <td>${order?.totalPrice}</td>
-                                            <td><span className="bg-primary text-white p-1">pay</span> <span className="bg-danger text-white ms-1 p-1">cancel</span></td>
+                                            <td>
+                                                {
+                                                    !order.paid && <span className=" btn btn-primary text-white p-1">pay</span>
+                                                }
+                                                {
+                                                    order.paid && <span className="bg-success text-white p-1">paid</span>
+                                                }
+                                                 <span className="bg-danger text-white ms-1 p-1">cancel</span></td>
                                             
 
                                         </tr>
