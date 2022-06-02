@@ -24,6 +24,7 @@ import RequireAdmin from './components/pages/Authentication/RequireAdmin/Require
 import Footer from './components/shared/Footer/Footer';
 import Blogs from './components/pages/Blogs/Blogs';
 import MyPortfolio from './components/pages/MyPortfolio/MyPortfolio';
+import Payment from './components/pages/Dashboard/Payment/Payment';
 
 
 
@@ -48,6 +49,7 @@ function App() {
           <Route path="dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} >
             <Route index element={<MyOrders></MyOrders>}></Route>
             <Route path="addAReview" element={<AddAReview></AddAReview>}></Route>
+            <Route path="payment/:id" element={<Payment></Payment>}></Route>
             <Route path="myProfile" element={<MyProfile></MyProfile>}></Route>
           </Route>
         }
