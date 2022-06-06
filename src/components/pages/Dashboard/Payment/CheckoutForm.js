@@ -6,11 +6,12 @@ const CheckoutForm = ({ order }) => {
     const elements = useElements();
     const [cardError, setCardError] = useState('');
     const [paymentSuccess, setPaymentSuccess] = useState('');
+    const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
     const [clientSecret, setClientSecret] = useState("");
 
 
-    const {userName, email, totalPrice } = order;
+    const { userName, email, totalPrice, _id } = order;
 
     useEffect(() => {
         fetch('http://localhost:5000/create-payment-intent', {
@@ -19,12 +20,12 @@ const CheckoutForm = ({ order }) => {
                 'content-type': 'application/json',
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             },
-            body: JSON.stringify({totalPrice})
+            body: JSON.stringify({ totalPrice })
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
-                if(data?.clientSecret){
+                
+                if (data?.clientSecret) {
                     setClientSecret(data.clientSecret);
                 }
             })
@@ -37,7 +38,7 @@ const CheckoutForm = ({ order }) => {
             return;
         }
 
-        const card= elements.getElement(CardElement);
+        const card = elements.getElement(CardElement);
 
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
@@ -46,28 +47,49 @@ const CheckoutForm = ({ order }) => {
 
         setCardError(error?.message || '');
         setPaymentSuccess("");
+        setProcessing(true);
 
-        const {paymentIntent, error: intentError} = await stripe.confirmCardPayment(
+        const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(
             clientSecret,
             {
-              payment_method: {
-                card: card,
-                billing_details: {
-                  name: userName,
-                  email: email
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        name: userName,
+                        email: email
+                    },
                 },
-              },
             },
-          );
+        );
 
-          if(intentError){
-              setCardError(intentError?.message)
-          }else{
-              setCardError("");
-              setTransactionId(paymentIntent.id);
-              console.log(paymentIntent);
-              setPaymentSuccess("Congrats! Your payment is completed")
-          }
+        if (intentError) {
+            setCardError(intentError?.message);
+            setProcessing(false);
+        } else {
+            setCardError("");
+            setTransactionId(paymentIntent.id);
+            console.log(paymentIntent);
+            setPaymentSuccess("Congrats! Your payment is completed");
+
+            const payment={
+                order:_id,
+                transactionId:paymentIntent.id
+            }
+
+            fetch(`http://localhost:5000/order${_id}`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json',
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(payment)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    setProcessing(false);
+                    console.log(data);
+                })
+        }
 
     }
     return (
@@ -82,10 +104,10 @@ const CheckoutForm = ({ order }) => {
                 cardError && <p className="text-danger">{cardError}</p>
             }
             {
-                paymentSuccess && 
+                paymentSuccess &&
                 <div className='mt-3' >
                     <p className="text-success">{paymentSuccess}</p>
-                    <p>Your transaction Id is <span  className="text-info fw-bold ms-3">{transactionId}</span></p>
+                    <p>Your transaction Id is <span className="text-info fw-bold ms-3">{transactionId}</span></p>
                 </div>
             }
         </>
