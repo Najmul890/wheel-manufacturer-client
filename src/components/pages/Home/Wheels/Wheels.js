@@ -6,12 +6,12 @@ import Wheel from './Wheel/Wheel';
 const Wheels = () => {
     const [wheels, setWheels] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/wheels')
+        fetch('https://afternoon-taiga-42988.herokuapp.com/wheels')
             .then(res => res.json())
             .then(data => setWheels(data))
     }, [])
 
-    if(wheels.length===0){
+    if (wheels.length === 0) {
         return <Loading></Loading>
     }
     return (
@@ -19,7 +19,7 @@ const Wheels = () => {
             <h2 className='text-center my-5 text-info' > The Wheels We Manufacture </h2>
             <Row xs={1} md={2} lg={3} className="g-4">
                 {
-                   wheels.map(wheel=><Wheel key={wheel._id} wheel={wheel} ></Wheel>)
+                    wheels.map(wheel => <Wheel key={wheel._id} wheel={wheel} ></Wheel>)
                 }
             </Row>
         </div>

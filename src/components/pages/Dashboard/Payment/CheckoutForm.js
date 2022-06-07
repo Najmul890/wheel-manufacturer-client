@@ -14,7 +14,7 @@ const CheckoutForm = ({ order }) => {
     const { userName, email, totalPrice, _id } = order;
 
     useEffect(() => {
-        fetch('http://localhost:5000/create-payment-intent', {
+        fetch('https://afternoon-taiga-42988.herokuapp.com/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -76,7 +76,7 @@ const CheckoutForm = ({ order }) => {
                 transactionId:paymentIntent.id
             }
 
-            fetch(`http://localhost:5000/order${_id}`, {
+            fetch(`https://afternoon-taiga-42988.herokuapp.com/order${_id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json',
