@@ -37,8 +37,8 @@ const Register = () => {
         await updateProfile({ displayName: name });
     }
     return (
-        <div className='container w-lg-50 w-100 mx-auto mb-5' >
-            <h2 className='text-center mt-2'>Please Register</h2>
+        <div style={{minHeight:"80vh"}} className='container w-50 mx-auto mb-5' >
+            <h2 className='text-center element-color-light mt-2'>Please Register</h2>
                 <Form onSubmit={handleRegister}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Control name="name" type="text" placeholder="Your Name" required />
@@ -49,11 +49,11 @@ const Register = () => {
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Control name="password" minLength={6} type="password" placeholder="Password" required />
                     </Form.Group>
-                    <Button className="w-50 mx-auto d-block mb-2" type="submit">
+                    <Button className="bg-btn w-50 mx-auto d-block mb-2" type="submit">
                         Register
                     </Button>
                 </Form>
-                <p className='text-primary' >Already have an account? <Link className='text-success' to="/login" >Login</Link> </p>
+                <p className='element-color-dark' >Already have an account? <Link className='element-color-light' to="/login" >Login</Link> </p>
                <GoogleSignIn></GoogleSignIn> 
         </div>
     );

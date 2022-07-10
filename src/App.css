@@ -1,6 +1,23 @@
 .App{
   background-color: #f1f2f6;
 }
+
+.element-color-dark{
+    color: #4b6584;
+}
+.element-bg-dark{
+   background-color: #4b6584;
+}
+.element-color-light{
+   color: #22a6b3;
+}
+.element-bg-light{
+   background-color: #22a6b3;
+}
+.bg-btn{
+  background-color: #2bcbba;
+  border: none;
+}
 .dashboard{
   min-height: 80vh;
 }

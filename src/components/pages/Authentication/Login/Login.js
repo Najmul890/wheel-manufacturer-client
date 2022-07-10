@@ -69,9 +69,9 @@ const Login = () => {
         }
     }
     return (
-        <div className='container w-lg-50 w-50 mx-auto mb-5'>
+        <div style={{minHeight:"80vh"}} className='container w-lg-50 w-50 mx-auto mb-5'>
 
-            <h2 className='color-dark text-center mt-2'>Please Login</h2>
+            <h2 style={{color:"#22a6b3"}} className='text-center mt-2'>Please Login</h2>
             <Form onSubmit={handleLogin}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Control name="email" ref={emailRef} type="email" placeholder="Enter email" required />
@@ -79,14 +79,14 @@ const Login = () => {
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Control name="password" type="password" placeholder="Password" required />
                 </Form.Group>
-                <Button className="text-white element-bg w-50 mx-auto d-block mb-2" type="submit">
+                <Button style={{backgroundColor:"#2bcbba", border:"none"}} className="text-white w-50 mx-auto d-block mb-2" type="submit">
                     Login
                 </Button>
             </Form>
 
             {errorElement}
-            <p className='color-dark' >Didn't have an account? <Link to="/register" className='main-color fw-bold pe-auto text-decoration-none' onClick={navigateRegister}>Please Register</Link> </p>
-            <p>Forget Password? <button className='btn btn-link color-dark pe-auto text-decoration-none' onClick={resetPassword}>Reset Password</button> </p>
+            <p className='element-color-dark' >Didn't have an account? <Link to="/register" className='element-color-light fw-bold pe-auto text-decoration-none' onClick={navigateRegister}>Please Register</Link> </p>
+            <p className="element-color-dark" >Forget Password? <button className='btn btn-link element-color-light pe-auto text-decoration-none' onClick={resetPassword}>Reset Password</button> </p>
             <GoogleSignIn></GoogleSignIn>   
         </div>
     );

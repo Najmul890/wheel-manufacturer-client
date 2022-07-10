@@ -71,45 +71,45 @@ const Purchase = () => {
         })
     }
     return (
-        <div className="container row">
-            <div className="col-lg-6">
+        <div className="container row p-5">
+            <div className="col-lg-6 element-color-dark">
             <Card>
                 <Card.Img variant="top" height={400} src={image} />
                 <Card.Body>
-                    <Card.Title>{name}</Card.Title>
+                    <Card.Title className='element-color-light' >{name}</Card.Title>
                     <Card.Text>
                         {description}
                     </Card.Text>
-                    <p>Min-Order: <span className="fw-bold">{minOrder}</span></p>
-                    <p>Available Quantity: <span className="fw-bold">{availableQuantity}</span></p>
-                    <h4>price: <span className="fw-bold">${price} /piece</span></h4>
+                    <p>Min-Order: <span className="fw-bold element-color-light">{minOrder}</span></p>
+                    <p>Available Quantity: <span className="fw-bold element-color-light">{availableQuantity}</span></p>
+                    <p style={{fontSize:"20px"}} >price: <span className="fw-bold element-color-light">${price} / piece</span></p>
 
                 </Card.Body>
             </Card>
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-6 mt-5  element-color-dark">
             <Form onSubmit={handlePlaceOrder}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Control name="user"  type="text" value={user?.displayName} required />
+                    <Form.Control className='element-color-light fw-bold' name="user"  type="text" value={user?.displayName} required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Control name="email" type="email" value={user?.email} required />
+                    <Form.Control className='element-color-light fw-bold' name="email" type="email" value={user?.email} required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Control name="phone" type="text" placeholder='your phone number' required />
+                    <Form.Control className='element-color-dark' name="phone" type="text" placeholder='your phone number' required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Control name="address" type="text" placeholder='your address' required />
+                    <Form.Control className='element-color-dark' name="address" type="text" placeholder='your address' required />
                 </Form.Group>
                 <label htmlFor="order quantity">Order Quantity:</label>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Control onChange={handleOrderQuantityChange} name="orderQuantity" type="number"  placeholder={`min order ${minOrder} pieces`}   required />
+                    <Form.Control className='element-color-dark' onChange={handleOrderQuantityChange} name="orderQuantity" type="number"  placeholder={`min order ${minOrder} pieces`}   required />
                 </Form.Group>
                 {
-                    orderQuantity && <p className="text-success">{`Total amount of ${orderQuantity} pieces of this item is $${totalAmount} `}</p>
+                    orderQuantity && <p className="element-color-dark fw-bold">{`Total amount of ${orderQuantity} pieces of this item is $${totalAmount} `}</p>
                 }
                 <p className="text-danger">{error}</p>
-                <Button disabled={btnDisable} className="text-white element-bg w-50 mx-auto d-block mb-2" type="submit">
+                <Button disabled={btnDisable} className="text-white bg-btn w-50 mx-auto d-block mb-2" type="submit">
                     Place Order
                 </Button>
             </Form>
