@@ -5,7 +5,7 @@ const SummeryItem = ({summery}) => {
     const {icon, count, item}= summery;
     return (
         <Col>
-            <Card>
+            <Card style={{backgroundColor:"#4b6584", color:"white"}} >
                 
                 <Card.Body className='text-center' >
                     <img src={icon} alt="" width={50} />

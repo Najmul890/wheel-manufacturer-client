@@ -8,8 +8,8 @@ const Dashboard = () => {
     const [user] = useAuthState(auth);
     const [admin] = useAdmin(user);
     return (
-        <div className="row dashboard">
-            <div className="col-md-2">
+        <div className="row dashboard container-fluid">
+            <div style={{backgroundColor:"#4b6584", minHeight:"100vh"}} className="col-md-2 mt-2">
                 {
                     !admin &&
                     <ul>
@@ -39,7 +39,7 @@ const Dashboard = () => {
 
             </div>
             <div className="col-md-10">
-                <h2 className='text-success'>Welcome to your Dashboard</h2>
+                <h2 style={{color:"#22a6b3"}}>Welcome to your Dashboard</h2>
                 <Outlet></Outlet>
             </div>
         </div>

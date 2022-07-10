@@ -16,7 +16,7 @@ const Wheels = () => {
     }
     return (
         <div>
-            <h2 className='text-center my-5 text-info' > The Wheels We Manufacture </h2>
+            <h2 style={{color:"#22a6b3"}} className='text-center my-5' > The Wheels We Manufacture </h2>
             <Row xs={1} md={2} lg={3} className="g-4">
                 {
                     wheels.map(wheel => <Wheel key={wheel._id} wheel={wheel} ></Wheel>)

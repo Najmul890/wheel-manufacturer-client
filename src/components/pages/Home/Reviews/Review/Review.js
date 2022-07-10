@@ -6,7 +6,7 @@ const Review = ({ reviewContent }) => {
     const { name, review } = reviewContent;
     return (
         <Col>
-            <Card style={{textTransform:'capitalize'}} className='p-5' >
+            <Card style={{textTransform:'capitalize', backgroundColor:"#4b6584", color:"white"}} className='p-5' >
                 <div className='d-flex align-items-center justify-content-space-between px-5' >
                     <h4 className='me-3' >{name}</h4>
                     <img width={50} src={userImage} alt="avatar" />

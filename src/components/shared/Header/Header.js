@@ -12,14 +12,14 @@ const Header = () => {
         localStorage.removeItem('accessToken');
     }
     return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar style={{backgroundColor:"#4b6584"}} collapseOnSelect expand="lg" variant="dark">
             <Container>
                 <Navbar.Brand as={Link} to="/">Wheel Manufacturing LTD</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/blogs">Blogs</Nav.Link>
-                        <Nav.Link as={Link} to="/myPortfolio">My Portfolio</Nav.Link>
+                        {/* <Nav.Link as={Link} to="/blogs">Blogs</Nav.Link>
+                        <Nav.Link as={Link} to="/myPortfolio">My Portfolio</Nav.Link> */}
 
                     </Nav>
                     <Nav>
@@ -27,10 +27,10 @@ const Header = () => {
                             user && <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
                         }
                         {
-                            user && <p className='text-success mt-2 me-2'>{user.displayName}</p>
+                            user && <p style={{color:"white"}} className='mt-2 me-2'>{user.displayName}</p>
                         }
                         {
-                            user ? <button className='btn btn-danger' onClick={handleSignOut} >Sign Out</button>
+                            user ? <button style={{backgroundColor:"#2bcbba", color:"white"}} className='btn' onClick={handleSignOut} >Sign Out</button>
                                 :
                                 <Nav.Link as={Link} to="/login">Login</Nav.Link>
                         }

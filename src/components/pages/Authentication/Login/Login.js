@@ -69,7 +69,7 @@ const Login = () => {
         }
     }
     return (
-        <div className='container w-lg-50 w-100 mx-auto mb-5'>
+        <div className='container w-lg-50 w-50 mx-auto mb-5'>
 
             <h2 className='color-dark text-center mt-2'>Please Login</h2>
             <Form onSubmit={handleLogin}>

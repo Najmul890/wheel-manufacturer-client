@@ -6,7 +6,7 @@ const Wheel = ({ wheel }) => {
     const { name, _id, image, description, minOrder, availableQuantity, price } = wheel;
     return (
         <Col>
-            <Card>
+            <Card style={{backgroundColor:"#4b6584", color:"white"}} >
                 <Card.Img variant="top" height={400} src={image} />
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
@@ -18,7 +18,7 @@ const Wheel = ({ wheel }) => {
                     <h4>price: <span className="fw-bold">${price} /piece</span></h4>
 
                     <Link to={`purchase/${_id}`} >
-                        <Button className='btn btn-success mt-3'  >Order Now</Button>
+                        <Button style={{backgroundColor:"#2bcbba", border:"none"}} className='btn mt-3'  >Order Now</Button>
                     </Link>
                 </Card.Body>
             </Card>

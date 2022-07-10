@@ -1,13 +1,26 @@
 .App{
-  background-color: rgb(194, 232, 243);
+  background-color: #f1f2f6;
+}
+.dashboard{
+  min-height: 80vh;
 }
 .dashboard ul{
   list-style: none;
   margin-top: 20px;
+  
+}
+.dashboard ul li{
+  margin-top: 20px;
+  
 }
 .dashboard ul li a{
   text-decoration: none;
   color: white;
+  font-weight: bold;
+  /* background-color: #4b6584; */
+  padding: 5px 10px;
+  
+  
 }
 .dashboard ul li a:hover{
   color: aqua;

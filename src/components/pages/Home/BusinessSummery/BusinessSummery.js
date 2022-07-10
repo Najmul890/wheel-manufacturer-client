@@ -37,7 +37,7 @@ const summeryItems=[
 const BusinessSummery = () => {
     
     return (
-        <div className='p-5 bg-info mt-5' >
+        <div style={{backgroundColor:"#22a6b3"}} className='p-5 mt-5' >
             <h2 className='text-white text-center my-5' >More Than Thousands Car Industry Trust Us</h2>
             <Row xs={1} md={2} lg={4} className="g-5">
                 {

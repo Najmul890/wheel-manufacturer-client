@@ -9,7 +9,7 @@ import Wheels from './Wheels/Wheels';
 const Home = () => {
     return (
         <div className='container' >
-            <h2 className='text-center mt-5 text-info fw-bold' >Wheel Manufacturing Limited</h2>
+            <h2 style={{color:"#22a6b3"}} className='text-center mt-5 fw-bold' >Wheel Manufacturing Limited</h2>
             <Banner></Banner>
             <Discount></Discount>
             <Wheels></Wheels>
