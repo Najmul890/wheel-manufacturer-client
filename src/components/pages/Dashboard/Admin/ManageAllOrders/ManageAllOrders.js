@@ -1,12 +1,35 @@
 import React, { useEffect, useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
 
 const ManageAllOrders = () => {
     const [orders, setOrders] = useState([]);
+    const [show, setShow] = useState(false);
     useEffect(() => {
-        fetch('https://afternoon-taiga-42988.herokuapp.com/orders')
+        fetch('http://localhost:5000/orders')
             .then(res => res.json())
             .then(data => setOrders(data))
     }, [])
+
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const handleConfirm = (id) => {
+        setShow(false);
+        const url = `http://localhost:5000/order/${id}`;
+            fetch(url, {
+                method: 'DELETE'
+            })
+            .then(res => res.json())
+            .then(data =>{
+                if(data.deletedCount > 0){
+                    
+                    const remaining = orders.filter(order => order._id !== id);
+                    setOrders(remaining);
+                }
+            })
+
+    }
     return (
         <div className='container-fluid' >
             <h2>Manage Orders</h2>
@@ -49,7 +72,22 @@ const ManageAllOrders = () => {
                                                     
                                                 </select>
                                             </span>
-                                                <span className="bg-danger text-white ms-1 p-1">Delete</span></td>
+                                                <span onClick={handleShow} className="btn btn-danger text-white ms-1 p-1">Delete</span></td>
+
+                                                <Modal show={show} onHide={handleClose}>
+                                                <Modal.Header closeButton>
+                                                    {/* <Modal.Title></Modal.Title> */}
+                                                </Modal.Header>
+                                                <Modal.Body>Are you sure, want to cancel this order?</Modal.Body>
+                                                <Modal.Footer>
+                                                    <Button variant="secondary" onClick={handleClose}>
+                                                        No
+                                                    </Button>
+                                                    <Button variant="primary" onClick={() => handleConfirm(order._id)}>
+                                                        Yes
+                                                    </Button>
+                                                </Modal.Footer>
+                                            </Modal>
 
 
                                         </tr>

@@ -10,7 +10,7 @@ const AddAReview = () => {
     const navigate= useNavigate();
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
-        fetch('https://afternoon-taiga-42988.herokuapp.com/addAReview', {
+        fetch('http://localhost:5000/addAReview', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -25,7 +25,7 @@ const AddAReview = () => {
     }
     return (
         <div>
-            <h2>Add a review </h2>
+            <h2 className='element-color-dark' >Add a review </h2>
             <form className='w-50 mt-5' onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-3">
                     <input className='form-control' value={user?.displayName} readOnly {...register("name", { required: true })} />
@@ -40,7 +40,7 @@ const AddAReview = () => {
                     {errors.review && <span className='text-danger' >Put a review</span>}
                 </div>
 
-                <input className='btn btn-success' type="submit" />
+                <input className='btn bg-btn' type="submit" />
             </form>
         </div>
     );

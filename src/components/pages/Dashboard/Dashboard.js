@@ -9,7 +9,7 @@ const Dashboard = () => {
     const [admin] = useAdmin(user);
     return (
         <div className="row dashboard container-fluid">
-            <div style={{backgroundColor:"#4b6584", minHeight:"100vh"}} className="col-md-2 mt-2">
+            <div style={{backgroundColor:"#4b6584", height:"100vh"}} className="col-md-2 mt-2">
                 {
                     !admin &&
                     <ul>

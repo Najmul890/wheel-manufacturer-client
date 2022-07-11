@@ -25,13 +25,13 @@ const AddAProduct = () => {
                         name: data.name,
                         image: image,
                         description: data.description,
-                        minOrder: data.minOrder,
-                        availableQuantity: data.availableQuantity,
+                        minOrder: parseInt(data.minOrder),
+                        availableQuantity: parseInt(data.availableQuantity),
                         price: data.price,
 
                     }
                     //send to database
-                    fetch('https://afternoon-taiga-42988.herokuapp.com/wheel', {
+                    fetch('http://localhost:5000/wheel', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

@@ -33,7 +33,7 @@ function App() {
   const [user] = useAuthState(auth);
   const [admin] = useAdmin(user);
   return (
-    <div className='App' >
+    <div className='app' >
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home></Home>} ></Route>
@@ -75,3 +75,21 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

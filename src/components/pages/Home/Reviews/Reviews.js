@@ -5,9 +5,9 @@ import Review from './Review/Review';
 const Reviews = () => {
     const [reviews, setReviews]=useState([]);
     useEffect(()=>{
-        fetch('https://afternoon-taiga-42988.herokuapp.com/reviews')
+        fetch('http://localhost:5000/reviews')
         .then(res=>res.json())
-        .then(data=>setReviews(data))
+        .then(data=>setReviews(data.reverse()))
     },[])
     return (
         <div className='p-5' >

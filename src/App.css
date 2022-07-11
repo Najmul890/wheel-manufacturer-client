@@ -1,4 +1,4 @@
-.App{
+.app{
   background-color: #f1f2f6;
 }
 
@@ -17,6 +17,7 @@
 .bg-btn{
   background-color: #2bcbba;
   border: none;
+  color: white;
 }
 .dashboard{
   min-height: 80vh;

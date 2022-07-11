@@ -7,7 +7,7 @@ const Wheel = ({ wheel }) => {
     return (
         <Col>
             <Card style={{backgroundColor:"#4b6584", color:"white"}} >
-                <Card.Img variant="top" height={400} src={image} />
+                <Card.Img variant="top" height="300" src={image} />
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
                     <Card.Text>

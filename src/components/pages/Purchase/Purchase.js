@@ -17,7 +17,7 @@ const Purchase = () => {
     const navigate= useNavigate();
 
     useEffect( () =>{
-        const url = `https://afternoon-taiga-42988.herokuapp.com/wheel/${id}`;
+        const url = `http://localhost:5000/wheel/${id}`;
         fetch(url)
         .then(res=> res.json())
         .then(data => setWheel(data));
@@ -55,7 +55,7 @@ const Purchase = () => {
             orderedWheel:wheel
         }
 
-        fetch('https://afternoon-taiga-42988.herokuapp.com/placeOrder', {
+        fetch('http://localhost:5000/placeOrder', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
