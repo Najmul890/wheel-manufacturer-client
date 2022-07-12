@@ -1,34 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+
 
 const ManageAllOrders = () => {
     const [orders, setOrders] = useState([]);
-    const [show, setShow] = useState(false);
+    
     useEffect(() => {
         fetch('http://localhost:5000/orders')
             .then(res => res.json())
-            .then(data => setOrders(data))
+            .then(data => setOrders(data.reverse()))
     }, [])
 
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    
+    console.log(orders);
+    const handleDeleteProduct = (id) => {
+        const confirmToDelete = window.confirm('Are you sure, want to delete this product?');
+        if (confirmToDelete) {
+            const url = `http://localhost:5000/order/${id}`;
 
-    const handleConfirm = (id) => {
-        setShow(false);
-        const url = `http://localhost:5000/order/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
-            .then(res => res.json())
-            .then(data =>{
-                if(data.deletedCount > 0){
-                    
-                    const remaining = orders.filter(order => order._id !== id);
-                    setOrders(remaining);
-                }
-            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        const remainingOrders = orders.filter(order => order._id !== id);
+                        setOrders(remainingOrders);
+                    }
 
+                })
+        }
     }
     return (
         <div className='container-fluid' >
@@ -64,30 +65,22 @@ const ManageAllOrders = () => {
                                             <td>${order?.orderedWheel?.price}</td>
                                             <td>{order?.orderedQuantity}</td>
                                             <td>${order?.totalPrice}</td>
-                                            <td><span className="bg-primary text-white p-1">
-                                                <select>
-                                                    <option value="volvo">Unpaid</option>
-                                                    <option value="saab">Pending</option>
-                                                    <option value="saab">Shifted</option>
-                                                    
-                                                </select>
-                                            </span>
-                                                <span onClick={handleShow} className="btn btn-danger text-white ms-1 p-1">Delete</span></td>
+                                            <td>
+                                                <span className="bg-primary text-white p-1">
+                                                    <select>
+                                                        {
+                                                            !order.paid && <option value="unpaid">Unpaid</option>
+                                                        }
 
-                                                <Modal show={show} onHide={handleClose}>
-                                                <Modal.Header closeButton>
-                                                    {/* <Modal.Title></Modal.Title> */}
-                                                </Modal.Header>
-                                                <Modal.Body>Are you sure, want to cancel this order?</Modal.Body>
-                                                <Modal.Footer>
-                                                    <Button variant="secondary" onClick={handleClose}>
-                                                        No
-                                                    </Button>
-                                                    <Button variant="primary" onClick={() => handleConfirm(order._id)}>
-                                                        Yes
-                                                    </Button>
-                                                </Modal.Footer>
-                                            </Modal>
+                                                        <option value="paid">Paid</option>
+
+                                                        <option value="shifted">Shifted</option>
+
+                                                    </select>
+                                                </span>
+                                                <span onClick={() => handleDeleteProduct(order?._id)} className="btn btn-danger text-white ms-1 p-1">Delete</span></td>
+
+
 
 
                                         </tr>

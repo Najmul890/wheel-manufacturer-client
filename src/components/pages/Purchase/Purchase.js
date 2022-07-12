@@ -64,7 +64,7 @@ const Purchase = () => {
         })
         .then(res => res.json())
         .then(data =>{
-            navigate("/");
+            navigate("/dashboard");
             setOrderQuantity("");
             toast.success('Your order has placed successfully!!!');
             event.target.reset();

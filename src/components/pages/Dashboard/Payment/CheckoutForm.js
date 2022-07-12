@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import Loading from '../../../shared/Loading/Loading';
 
 const CheckoutForm = ({ order }) => {
     const stripe = useStripe();
@@ -71,27 +72,30 @@ const CheckoutForm = ({ order }) => {
             console.log(paymentIntent);
             setPaymentSuccess("Congrats! Your payment is completed");
 
-            const payment={
-                order:_id,
-                transactionId:paymentIntent.id
+            
+            const payment = {
+                appointment: _id,
+                transactionId: paymentIntent.id
             }
-
-            fetch(`http://localhost:5000/order${_id}`, {
-                method: 'PUT',
+            fetch(`http://localhost:5000/order/${_id}`, {
+                method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
                 },
                 body: JSON.stringify(payment)
+            }).then(res=>res.json())
+            .then(data => {
+                setProcessing(false);
+                
             })
-                .then(res => res.json())
-                .then(data => {
-                    setProcessing(false);
-                    console.log(data);
-                })
         }
 
     }
+
+    // if(processing ){
+    //     return <Loading></Loading>
+    // }
     return (
         <>
             <form onSubmit={handleSubmit}>
