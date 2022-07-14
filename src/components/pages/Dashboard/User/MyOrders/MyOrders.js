@@ -11,7 +11,7 @@ const MyOrders = () => {
 
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/myOrders?email=${user.email}`, {
+            fetch(`https://afternoon-taiga-42988.herokuapp.com/myOrders?email=${user.email}`, {
                 method: 'GET',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -36,7 +36,7 @@ const MyOrders = () => {
     const handleDeleteProduct = (id) => {
         const confirmToDelete = window.confirm('Are you sure, want to delete this product?');
         if (confirmToDelete) {
-            const url = `http://localhost:5000/order/${id}`;
+            const url = `https://afternoon-taiga-42988.herokuapp.com/order/${id}`;
 
             fetch(url, {
                 method: 'DELETE'
@@ -94,11 +94,17 @@ const MyOrders = () => {
                                                     !order.paid && <Link to={`/dashboard/payment/${order._id}`} ><span className=" btn bg-btn text-white p-1">pay</span></Link>
                                                 }
                                                 {
-                                                    order.paid && <span className="bg-success text-white p-1">Pending</span>
-                                                }
-                                                <span onClick={() => handleDeleteProduct(order?._id)} className="btn btn-danger text-white ms-1 p-1">cancel</span></td>
 
-                                            
+                                                    order.paid && order.status==="shifted" ? <span className="element-bg-dark text-white p-1">Complete</span>
+                                                    :
+                                                    order.paid &&  <span className="element-bg-dark text-white p-1">Pending</span>
+                                                }
+                                                {
+                                                    !order.paid && <span onClick={() => handleDeleteProduct(order?._id)} className="btn btn-danger text-white ms-1 p-1">cancel</span>
+                                                }
+                                            </td>
+
+
 
                                         </tr>
                                     )

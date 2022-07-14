@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react';
 
 
+
 const ManageAllOrders = () => {
     const [orders, setOrders] = useState([]);
-    
+    const [status, setStatus]=null;
+
     useEffect(() => {
-        fetch('http://localhost:5000/orders')
+        fetch('https://afternoon-taiga-42988.herokuapp.com/orders')
             .then(res => res.json())
             .then(data => setOrders(data.reverse()))
     }, [])
 
 
-    
-    console.log(orders);
-    const handleDeleteProduct = (id) => {
+
+
+    const handleDeleteOrder = (id) => {
         const confirmToDelete = window.confirm('Are you sure, want to delete this product?');
         if (confirmToDelete) {
-            const url = `http://localhost:5000/order/${id}`;
+            const url = `https://afternoon-taiga-42988.herokuapp.com/order/${id}`;
 
             fetch(url, {
                 method: 'DELETE'
@@ -31,8 +33,30 @@ const ManageAllOrders = () => {
                 })
         }
     }
+    
+    
+    const handleChangeStatus = (event, id) => {
+        
+        
+        const orderStatus = {
+            status: event.target.value
+        }
+        fetch(`https://afternoon-taiga-42988.herokuapp.com/orderStatus/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(orderStatus)
+        }).then(res=>res.json())
+        .then(data => {
+            window.location.reload(false);
+            
+        })
+    
+    }
     return (
-        <div className='container-fluid' >
+        <div className='container-fluid'>
             <h2>Manage Orders</h2>
 
             <div className="row">
@@ -49,7 +73,7 @@ const ManageAllOrders = () => {
                                     <th className="text-secondary" scope="col">Price</th>
                                     <th className="text-secondary" scope="col">Quantity</th>
                                     <th className="text-secondary" scope="col">Total</th>
-                                    <th className="text-secondary" scope="col">Action</th>
+                                    <th className="text-secondary" scope="col">Status / Action</th>
 
 
                                 </tr>
@@ -65,20 +89,34 @@ const ManageAllOrders = () => {
                                             <td>${order?.orderedWheel?.price}</td>
                                             <td>{order?.orderedQuantity}</td>
                                             <td>${order?.totalPrice}</td>
-                                            <td>
-                                                <span className="bg-primary text-white p-1">
-                                                    <select>
+                                            <td className="text-white p-1">
+                                                
+                                                    
                                                         {
-                                                            !order.paid && <option value="unpaid">Unpaid</option>
+                                                            !order.paid && <span  className='element-bg-dark p-1'>Unpaid</span>
                                                         }
 
-                                                        <option value="paid">Paid</option>
+                                                        
+                                                        {
+                                                            order.paid && order.status==="shifted" ?
+                                                            
+                                                                <span className='element-bg-dark p-1'>Shifted</span>
+                                                                :
+                                                            
+                                                                order.paid &&
+                                                                <select onChange={event => handleChangeStatus(event, order._id)}>
+                                                                    <option value="paid">Paid</option>
+    
+                                                                    <option value="shifted">Shifted</option>
+                                                                </select>
+                                                            
+                                                        }
 
-                                                        <option value="shifted">Shifted</option>
-
-                                                    </select>
-                                                </span>
-                                                <span onClick={() => handleDeleteProduct(order?._id)} className="btn btn-danger text-white ms-1 p-1">Delete</span></td>
+                                                    {
+                                                        (!order.paid || order.status==="shifted") && <span onClick={() => handleDeleteOrder(order?._id)} className="btn btn-danger text-white ms-1 p-1">Delete</span>
+                                                    }    
+                                                
+                                                </td>
 
 
 
