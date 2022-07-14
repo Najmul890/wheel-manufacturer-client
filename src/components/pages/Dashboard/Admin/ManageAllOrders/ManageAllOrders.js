@@ -4,8 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 const ManageAllOrders = () => {
     const [orders, setOrders] = useState([]);
-    const [status, setStatus]=null;
-
+   
     useEffect(() => {
         fetch('https://piscine-choucroute-57860.herokuapp.com/orders')
             .then(res => res.json())
