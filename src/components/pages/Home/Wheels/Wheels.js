@@ -6,7 +6,7 @@ import Wheel from './Wheel/Wheel';
 const Wheels = () => {
     const [wheels, setWheels] = useState([]);
     useEffect(() => {
-        fetch('https://afternoon-taiga-42988.herokuapp.com/wheels')
+        fetch('https://piscine-choucroute-57860.herokuapp.com/wheels')
             .then(res => res.json())
             .then(data => setWheels(data))
     }, [])

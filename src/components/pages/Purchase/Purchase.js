@@ -17,7 +17,7 @@ const Purchase = () => {
     const navigate= useNavigate();
 
     useEffect( () =>{
-        const url = `https://afternoon-taiga-42988.herokuapp.com/wheel/${id}`;
+        const url = `https://piscine-choucroute-57860.herokuapp.com/wheel/${id}`;
         fetch(url)
         .then(res=> res.json())
         .then(data => setWheel(data));
@@ -55,7 +55,7 @@ const Purchase = () => {
             orderedWheel:wheel
         }
 
-        fetch('https://afternoon-taiga-42988.herokuapp.com/placeOrder', {
+        fetch('https://piscine-choucroute-57860.herokuapp.com/placeOrder', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

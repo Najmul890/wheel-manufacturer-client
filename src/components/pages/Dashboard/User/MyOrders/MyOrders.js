@@ -11,7 +11,7 @@ const MyOrders = () => {
 
     useEffect(() => {
         if (user) {
-            fetch(`https://afternoon-taiga-42988.herokuapp.com/myOrders?email=${user.email}`, {
+            fetch(`https://piscine-choucroute-57860.herokuapp.com/myOrders?email=${user.email}`, {
                 method: 'GET',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -36,7 +36,7 @@ const MyOrders = () => {
     const handleDeleteProduct = (id) => {
         const confirmToDelete = window.confirm('Are you sure, want to delete this product?');
         if (confirmToDelete) {
-            const url = `https://afternoon-taiga-42988.herokuapp.com/order/${id}`;
+            const url = `https://piscine-choucroute-57860.herokuapp.com/order/${id}`;
 
             fetch(url, {
                 method: 'DELETE'

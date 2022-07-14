@@ -15,7 +15,7 @@ const CheckoutForm = ({ order }) => {
     const { userName, email, totalPrice, _id } = order;
 
     useEffect(() => {
-        fetch('https://afternoon-taiga-42988.herokuapp.com/create-payment-intent', {
+        fetch('https://piscine-choucroute-57860.herokuapp.com/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -77,7 +77,7 @@ const CheckoutForm = ({ order }) => {
                 
                 transactionId: paymentIntent.id
             }
-            fetch(`https://afternoon-taiga-42988.herokuapp.com/order/${_id}`, {
+            fetch(`https://piscine-choucroute-57860.herokuapp.com/order/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',

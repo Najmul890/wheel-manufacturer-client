@@ -31,7 +31,7 @@ const AddAProduct = () => {
 
                     }
                     //send to database
-                    fetch('https://afternoon-taiga-42988.herokuapp.com/wheel', {
+                    fetch('https://piscine-choucroute-57860.herokuapp.com/wheel', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'
