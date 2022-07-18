@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const ManageProducts = () => {
     const [wheels, setWheels] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/wheels')
+        fetch('https://piscine-choucroute-57860.herokuapp.com/wheels')
             .then(res => res.json())
             .then(data => setWheels(data))
     }, [])
@@ -12,7 +12,7 @@ const ManageProducts = () => {
     const handleDeleteWheel = (id) => {
         const confirmToDelete = window.confirm('Are you sure, want to delete this product?');
         if (confirmToDelete) {
-            const url = `http://localhost:5000/wheel/${id}`;
+            const url = `https://piscine-choucroute-57860.herokuapp.com/wheel/${id}`;
 
             fetch(url, {
                 method: 'DELETE'

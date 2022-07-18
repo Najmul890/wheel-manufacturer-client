@@ -10,7 +10,7 @@ const AddAReview = () => {
     const navigate= useNavigate();
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
-        fetch('http://localhost:5000/addAReview', {
+        fetch('https://piscine-choucroute-57860.herokuapp.com/addAReview', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
