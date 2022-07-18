@@ -12,7 +12,6 @@ import Purchase from './components/pages/Purchase/Purchase';
 import Dashboard from './components/pages/Dashboard/Dashboard';
 import MyOrders from './components/pages/Dashboard/User/MyOrders/MyOrders';
 import AddAReview from './components/pages/Dashboard/User/AddAReview/AddAReview';
-import MyProfile from './components/pages/Dashboard/MyProfile/MyProfile';
 import ManageAllOrders from './components/pages/Dashboard/Admin/ManageAllOrders/ManageAllOrders';
 import AddAProduct from './components/pages/Dashboard/Admin/AddAProduct/AddAProduct';
 import MakeAdmin from './components/pages/Dashboard/Admin/MakeAdmin/MakeAdmin';
@@ -23,7 +22,6 @@ import useAdmin from './components/hooks/useAdmin';
 import RequireAdmin from './components/pages/Authentication/RequireAdmin/RequireAdmin';
 import Footer from './components/shared/Footer/Footer';
 import Blogs from './components/pages/Blogs/Blogs';
-import MyPortfolio from './components/pages/MyPortfolio/MyPortfolio';
 import Payment from './components/pages/Dashboard/Payment/Payment';
 
 
@@ -38,7 +36,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home></Home>} ></Route>
         <Route path="/blogs" element={<Blogs></Blogs>} ></Route>
-        {/* <Route path="/myPortfolio" element={<MyPortfolio></MyPortfolio>} ></Route> */}
+        
         <Route path="/purchase/:id" element={
           <RequireAuth>
             <Purchase></Purchase>
@@ -50,7 +48,6 @@ function App() {
             <Route index element={<MyOrders></MyOrders>}></Route>
             <Route path="addAReview" element={<AddAReview></AddAReview>}></Route>
             <Route path="payment/:id" element={<Payment></Payment>}></Route>
-            <Route path="myProfile" element={<MyProfile></MyProfile>}></Route>
           </Route>
         }
         {
@@ -60,8 +57,6 @@ function App() {
             <Route path="addAProduct" element={<RequireAdmin><AddAProduct></AddAProduct></RequireAdmin>}></Route>
             <Route path="makeAdmin" element={<MakeAdmin></MakeAdmin>}></Route>
             <Route path="manageProducts" element={<ManageProducts></ManageProducts>}></Route>
-            <Route path="myProfile" element={<MyProfile></MyProfile>}></Route>
-
           </Route>
         }
         <Route path="/login" element={<Login></Login>} ></Route>

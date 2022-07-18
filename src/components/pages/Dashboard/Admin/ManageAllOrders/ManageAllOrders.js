@@ -6,7 +6,7 @@ const ManageAllOrders = () => {
     const [orders, setOrders] = useState([]);
    
     useEffect(() => {
-        fetch('https://piscine-choucroute-57860.herokuapp.com/orders')
+        fetch('http://localhost:5000/orders')
             .then(res => res.json())
             .then(data => setOrders(data.reverse()))
     }, [])
@@ -17,7 +17,7 @@ const ManageAllOrders = () => {
     const handleDeleteOrder = (id) => {
         const confirmToDelete = window.confirm('Are you sure, want to delete this product?');
         if (confirmToDelete) {
-            const url = `https://piscine-choucroute-57860.herokuapp.com/order/${id}`;
+            const url = `http://localhost:5000/order/${id}`;
 
             fetch(url, {
                 method: 'DELETE'
@@ -40,7 +40,7 @@ const ManageAllOrders = () => {
         const orderStatus = {
             status: event.target.value
         }
-        fetch(`https://piscine-choucroute-57860.herokuapp.com/orderStatus/${id}`, {
+        fetch(`http://localhost:5000/orderStatus/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
