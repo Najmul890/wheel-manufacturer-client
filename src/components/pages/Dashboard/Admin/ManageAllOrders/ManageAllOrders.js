@@ -15,7 +15,7 @@ const ManageAllOrders = () => {
 
 
     const handleDeleteOrder = (id) => {
-        const confirmToDelete = window.confirm('Are you sure, want to delete this product?');
+        const confirmToDelete = window.confirm('Are you sure, want to delete this order?');
         if (confirmToDelete) {
             const url = `http://localhost:5000/order/${id}`;
 
